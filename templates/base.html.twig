@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    {% block head %}
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
+        <title>{% block title %}{% endblock %} - Planning CGA</title>
+    {% endblock %}
+</head>
+<body>
+<div id="navbar">
+    {% block navbar %}
+        <div class="navbar-up">
+            <ul id="nav-up">
+                <li><a href="/">Accueil  |</a></li>
+                {% if app.user %}
+                    <li><a href="/logout">Deconnexion</a></li>
+                {% else %}
+                    <li><a href="/login">Connexion</a></li>
+                {% endif %}
+            </ul>
+        </div>
+
+        <div class="wrapper">
+            <tr>
+                <td>
+                    <div align="left">
+                        <a href="/"><img class="logo-img" src="{{ asset('img/logo.png') }}" height="auto" width="150"></a>
+                    </div>
+                </td>
+                <td>
+                    <div class="header">
+                        <h2><a href="/" class="brand-logo">Planning des Gardes</a></h2>
+                        Centre de Gérontologie <br>
+                        LES ABONDANCES - Boulogne-Billancourt
+                    </div>
+                </td>
+            </tr>
+        </div>
+    {% endblock %}
+</div>
+
+<div id="content">{% block content %}{% endblock %}</div>
+
+<div id="footer">
+    {% block footer %}
+        <br>
+        &copy; Copyright 2021 by <a href="https://github.com/Pyxah">Laure Delachapelle</a>.
+    {% endblock %}
+</div>
+</body>
+</html>
