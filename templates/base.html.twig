@@ -1,59 +1,66 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-    {% block head %}
-        <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
-        <title>{% block title %}{% endblock %} - Planning CGA</title>
+    <head>
+        {% block head %}
+            <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
+            <title>{% block title %}{% endblock %} - Planning CGA</title>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.css" integrity="sha256-16PDMvytZTH9heHu9KBPjzrFTaoner60bnABykjNiM0=" crossorigin="anonymous">
+            {% block stylesheets %}
 
-        {% block stylesheets %}
-            <link href="{{ asset('fullcalendar/main.css')}}" rel='stylesheet'/>
-            <script src="{{ asset('fullcalendar/main.js') }}"></script>
+            {% endblock %}
         {% endblock %}
-    {% endblock %}
-</head>
-<body>
-<div id="navbar">
-    {% block navbar %}
-        <div class="navbar-up">
-            <ul id="nav-up">
-                <li><a href="/">Accueil  |</a></li>
-                {% if app.user %}
-                    <li><a href="/logout">Deconnexion</a></li>
-                {% else %}
-                    <li><a href="/login">Connexion</a></li>
-                {% endif %}
-            </ul>
+    </head>
+
+    <body>
+        <div id="navbar">
+            {% block navbar %}
+                <div class="navbar-up">
+                    <ul id="nav-up">
+                        <li><a href="/">Accueil  |</a></li>
+                        {% if app.user %}
+                            <li><a href="/logout">Deconnexion</a></li>
+                        {% else %}
+                            <li><a href="/login">Connexion</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                <div class="wrapper">
+                    <tr>
+                        <td>
+                            <div align="left">
+                                <a href="/"><img class="logo-img" src="{{ asset('img/logo.png') }}" height="auto" width="150"></a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="header">
+                                <h2><a href="/" class="brand-logo">Planning des Gardes</a></h2>
+                                Centre de Gérontologie <br>
+                                LES ABONDANCES - Boulogne-Billancourt
+                            </div>
+                        </td>
+                    </tr>
+                </div>
+            {% endblock %}
         </div>
 
-        <div class="wrapper">
-            <tr>
-                <td>
-                    <div align="left">
-                        <a href="/"><img class="logo-img" src="{{ asset('img/logo.png') }}" height="auto" width="150"></a>
-                    </div>
-                </td>
-                <td>
-                    <div class="header">
-                        <h2><a href="/" class="brand-logo">Planning des Gardes</a></h2>
-                        Centre de Gérontologie <br>
-                        LES ABONDANCES - Boulogne-Billancourt
-                    </div>
-                </td>
-            </tr>
+        <div id="content">
+            {% block content %}{% endblock %}
         </div>
-    {% endblock %}
-</div>
 
-<div id="content">{% block content %}{% endblock %}</div>
+        {% block body %}{% endblock %}
 
-{% block body %}{% endblock %}
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js" integrity="sha256-PL1mKrYeZkM5SsJ5nydN6463HLkV918bgDdYL0I5Z+k=" crossorigin="anonymous"></script>
 
-<div id="footer">
-    {% block footer %}
-        <br>
-        &copy; Copyright 2021 by <a href="https://github.com/Pyxah">Laure Delachapelle</a>.
-    {% endblock %}
-</div>
-</body>
+        {% block javascripts %}
+        {% endblock %}
+
+        <div id="footer">
+            {% block footer %}
+                <br>
+                &copy; Copyright 2021 by <a href="https://github.com/Pyxah">Laure Delachapelle</a>.
+            {% endblock %}
+        </div>
+    </body>
 </html>

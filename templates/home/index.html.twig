@@ -25,7 +25,30 @@
         window.onload = () => {
             let calendarElt = document.querySelector("#calendrier")
             let calendar = new FullCalendar.Calendar(calendarElt, {
-                initialView: 'dayGridMonth'
+                initialView: 'dayGridMonth',
+                locale: 'fr',
+                timeZone: 'Europe/Paris',
+                contentHeight: 'auto',
+                firstDay: 1,
+                showNonCurrentDates: true,
+                weekNumbers: true,
+                navLinks: true,
+                businessHours: {
+                    startTime: '09:00',
+                    endTime: '17:00'
+                },
+                headerToolbar: {
+                    start:'prev,next today',
+                    center:'title',
+                    end:'dayGridMonth,timeGridWeek,timeGridDay',
+                },
+                buttonText: {
+                    today:'aujourd\'hui',
+                    month:'mois',
+                    week:'semaine',
+                    day:'jour',
+                    list:'liste'
+                }
             })
             calendar.render()
         }
