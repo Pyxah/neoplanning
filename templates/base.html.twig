@@ -5,6 +5,11 @@
     {% block head %}
         <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
         <title>{% block title %}{% endblock %} - Planning CGA</title>
+
+        {% block stylesheets %}
+            <link href="{{ asset('fullcalendar/main.css')}}" rel='stylesheet'/>
+            <script src="{{ asset('fullcalendar/main.js') }}"></script>
+        {% endblock %}
     {% endblock %}
 </head>
 <body>
@@ -41,6 +46,8 @@
 </div>
 
 <div id="content">{% block content %}{% endblock %}</div>
+
+{% block body %}{% endblock %}
 
 <div id="footer">
     {% block footer %}

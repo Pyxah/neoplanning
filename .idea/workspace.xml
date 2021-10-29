@@ -21,7 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="adbf7cbc-61db-4201-8930-b8557de79ac4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -171,7 +171,9 @@
     </include_path>
   </component>
   <component name="ProjectId" id="205pFe0RmOWGBslZIzGqjDPWvpu" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -199,7 +201,7 @@
       <updated>1635344200771</updated>
       <workItem from="1635344201853" duration="2103000" />
       <workItem from="1635422994274" duration="8968000" />
-      <workItem from="1635492097166" duration="1283000" />
+      <workItem from="1635492097166" duration="7483000" />
     </task>
     <servers />
   </component>

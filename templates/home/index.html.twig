@@ -14,4 +14,20 @@
             <li><a href="/rouvray">Garde de soins - site Le Rouvray</a></li>
         </ul>
     </div>
+
+    <div id="calendrier">
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        window.onload = () => {
+            let calendarElt = document.querySelector("#calendrier")
+            let calendar = new FullCalendar.Calendar(calendarElt, {
+                initialView: 'dayGridMonth'
+            })
+            calendar.render()
+        }
+    </script>
 {% endblock %}
