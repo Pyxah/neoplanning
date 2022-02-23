@@ -38,6 +38,7 @@ class ApiController extends AbstractController
              //initialisation d'un code de reponse
              $code = 200; //mise à jour OK
 
+             /*
              //on vérifie si l'id existe déjà
              if(!$calendar){
                  //s'il n'existe pas, on créé un rdv
@@ -45,7 +46,7 @@ class ApiController extends AbstractController
 
                  //on change le code
                  $code = 201; //créatiion ok
-             }
+             }*/
 
              $calendar->setTitle($donnees->title);
              $calendar->setStart(new \DateTime($donnees->start));

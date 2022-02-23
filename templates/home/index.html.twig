@@ -43,6 +43,17 @@
                     center:'title',
                     end:'dayGridMonth,timeGridWeek,timeGridDay',
                 },
+                customButtons: {
+                    addEventButton: {
+                        text: 'Ajout event',
+                        click: function () {
+                            alert('le clic marche, au moins');
+                        }
+                    },
+                },
+                footerToolbar: {
+                    center:'addEventButton'
+                },
                 buttonText: {
                     today:'aujourd\'hui',
                     month:'mois',
@@ -58,7 +69,7 @@
                     }
                 },
                 eventClick: function (event, view){
-
+                    console.log(event.event._def.title, event.event._instance.range.start, event.event._instance.range.end)
                 }
             })
             calendar.on('eventChange', (e) => {
