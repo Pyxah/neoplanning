@@ -1,20 +1,80 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdministrativeController!{% endblock %}
+{% block title %}Gardes Administratives{% endblock %}
+{% block navbar %} {{ parent() }} {% endblock %}
+{% block content %}
+    <div class="navbar-sec">
+        <ul id="nav-sec">
+            <li><a href="/">Planning Home</a></li>
+            <li><a href="/gadmin">Gardes Administratives</a></li>
+            <li><a href="/med">Gardes Médicales</a></li>
+            <li><a href="/tech">Gardes Techniques</a></li>
+            <li><a href="/soins">Gardes des Soins</a></li>
+            <li><a href="/ssiad">Astreintes SSIAD</a></li>
+            <li><a href="/rouvray">Garde de soins - site Le Rouvray</a></li>
+        </ul>
+    </div>
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div id="calendrier">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/my symfony projects/neoplanning/src/Controller/AdministrativeController.php'|file_link(0) }}">src/Controller/AdministrativeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/my symfony projects/neoplanning/templates/administrative/index.html.twig'|file_link(0) }}">templates/administrative/index.html.twig</a></code></li>
-    </ul>
-</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+       /* let DateTime = luxon.DateTime;
+        dt = DateTime.now();
+        dt.setLocale('fr').toLocaleString(DateTime.DATETIME_FULL);
+
+        const DateTime = luxon.DateTime;
+        dt = DateTime.now();
+        dt.setLocale('fr').toLocaleString(DateTime.DATETIME_FULL); //=> '20 avril 2017 à 11:32 UTC−4'
+
+        function getCalendarFormat(myDateTime, now) {
+            var diff = myDateTime.diff(now.startOf("day"), 'days').as('days');
+            return diff < -6 ? 'sameElse' :
+                diff < -1 ? 'lastWeek' :
+                diff < 0 ? 'lastDay' :
+                diff < 1 ? 'sameDay' :
+                diff < 2 ? 'nextDay' :
+                diff < 7 ? 'nextWeek' : 'sameElse';
+        }
+
+        function myCalendar(dt1, dt2, obj){
+            const format = getCalendarFormat(dt1, dt2) || 'sameElse';
+            return dt1.toFormat(obj[format]);
+        }
+
+        const now = DateTime.local();
+        const fmtObj = {
+            sameDay: "'Aujourdhui'",
+            nextDay: "'Demain'",
+            nextWeek: 'EEEE',
+            lastDay: "'Hier'",
+            lastWeek: "'Last' EEEE",
+            sameElse: 'dd/MM/yyyy'
+        };
+
+        // Some test values
+        [ now,
+            now.plus({days: 1}),
+            now.plus({days: 4}),
+            now.minus({days: 1}),
+            now.minus({days: 4}),
+            now.minus({days: 20}),
+        ].forEach((k) => {
+            console.log( myCalendar(now, k, fmtObj) );
+        });
+
+       let now = moment.locale('fr');
+       let daysInMonth = moment().daysInMonth();
+       let startOfMonth = moment().startOf('month');
+       let startOfMonthDay = startOfMonth.getDay;
+
+       console.log(daysInMonth);
+       console.log(startOfMonth);
+       console.log(startOfMonthDay);
+*/
+    </script>
 {% endblock %}

@@ -32,6 +32,7 @@
                 firstDay: 1,
                 showNonCurrentDates: true,
                 weekNumbers: true,
+                weekText: 'S',
                 navLinks: true,
                 businessHours: {
                     startTime: '09:00',
@@ -48,8 +49,34 @@
                     week:'semaine',
                     day:'jour',
                     list:'liste'
+                },
+                events: {{ data | raw }},
+                editable: true,
+                eventDrop: (data) => {
+                    if(!confirm("Êtes-vous sûr de vouloir déplacer cet évènement?")){
+                        data.revert();
+                    }
+                },
+                eventClick: function (event, view){
+
                 }
             })
+            calendar.on('eventChange', (e) => {
+                let url = `/api/${e.event.id}/edit`
+                let donnees = {
+                    "title": e.event.title,
+                    "start": e.event.start,
+                    "end": e.event.end,
+                    "description": e.event.extendedProps.description,
+                    "allDay" : e.event.allDay
+                }
+
+                let xhr = new XMLHttpRequest
+
+                xhr.open("PUT", url)
+                xhr.send(JSON.stringify(donnees))
+            })
+
             calendar.render()
         }
     </script>
