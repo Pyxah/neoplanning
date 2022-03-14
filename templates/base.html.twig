@@ -46,14 +46,23 @@
         </div>
 
         <div id="content">
-            {% block content %}{% endblock %}
+            {% block content %}<div class="navbar-sec">
+                <ul id="nav-sec">
+                    <li><a href="/">Planning Home</a></li>
+                    <li><a href="/gadmin">Gardes Administratives</a></li>
+                    <li><a href="/med">Gardes Médicales</a></li>
+                    <li><a href="/tech">Gardes Techniques</a></li>
+                    <li><a href="/soins">Gardes des Soins</a></li>
+                    <li><a href="/ssiad">Astreintes SSIAD</a></li>
+                    <li><a href="/rouvray">Garde de soins - site Le Rouvray</a></li>
+                </ul>
+            </div>{% endblock %}
         </div>
 
         {% block body %}{% endblock %}
 
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js" integrity="sha256-PL1mKrYeZkM5SsJ5nydN6463HLkV918bgDdYL0I5Z+k=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/luxon@2.1.1/build/global/luxon.min.js" integrity="sha256-vSborW7X9FSJg4XLi1TpwZKTlbN2nP6lHhC0XCNrVwU=" crossorigin="anonymous"></script>
 
         {% block javascripts %}
         {% endblock %}

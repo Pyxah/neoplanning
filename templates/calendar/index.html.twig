@@ -13,7 +13,7 @@
                 <th>Date de début</th>
                 <th>Date de fin</th>
                 <th>Description</th>
-                <th>Toute la journée?</th>
+                <th>Journée complète?</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -33,11 +33,11 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">Vide</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('calendar_new') }}">Create new</a>
+    <a href="{{ path('calendar_new') }}">Nouveau</a>
 {% endblock %}

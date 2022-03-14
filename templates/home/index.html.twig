@@ -17,7 +17,6 @@
 
     <div id="calendrier">
     </div>
-
 {% endblock %}
 
 {% block javascripts %}
@@ -47,7 +46,7 @@
                     addEventButton: {
                         text: 'Ajout event',
                         click: function () {
-                            alert('le clic marche, au moins');
+                            window.open('/calendar/new');
                         }
                     },
                 },
@@ -68,9 +67,14 @@
                         data.revert();
                     }
                 },
-                eventClick: function (event, view){
-                    console.log(event.event._def.title, event.event._instance.range.start, event.event._instance.range.end)
+                eventClick: function (event){
+                    //alert(event.event._def.title, event.event._instance.range.start, event.event._instance.range.end)
+                    alert('Event: ' + event.event.title + ' ' + 'Description : ' + event.event._def.description + ' ' + 'Début: ' + event.event._instance.range.start + ' ' + 'Fin: ' + event.event._instance.range.end);
+
+                    // test de changement de couleur de la bordure (pourquoi pas?)
+                    info.el.style.borderColor = 'red';
                 }
+
             })
             calendar.on('eventChange', (e) => {
                 let url = `/api/${e.event.id}/edit`

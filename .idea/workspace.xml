@@ -21,9 +21,13 @@
   <component name="ChangeListManager">
     <list default="true" id="adbf7cbc-61db-4201-8930-b8557de79ac4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ApiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ApiController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/calendar/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/calendar/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/administrative/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/administrative/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/calendar/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/calendar/_delete_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/calendar/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/calendar/_form.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/calendar/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/calendar/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/calendar/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/calendar/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/calendar/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/calendar/show.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -195,7 +199,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Documents/CGA/Neoplanning" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../csis-promeo-main/csis-promeo-main/HTML CSS pour le procédural" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -229,6 +233,11 @@
       <workItem from="1641903823064" duration="3527000" />
       <workItem from="1643026189826" duration="1277000" />
       <workItem from="1645603772429" duration="19642000" />
+      <workItem from="1645637968330" duration="714000" />
+      <workItem from="1646057239639" duration="3784000" />
+      <workItem from="1646132317206" duration="894000" />
+      <workItem from="1646737710673" duration="91000" />
+      <workItem from="1646831373296" duration="7163000" />
     </task>
     <servers />
   </component>
