@@ -14,6 +14,7 @@ class AdministrativeController extends AbstractController
      */
     public function index(): Response
     {
+
         $users = $this->getDoctrine()->getRepository(User::class)->findBy(
             ['gid' => 1]
         );

@@ -2,146 +2,159 @@
 
 {% block title %}Gardes Administratives{% endblock %}
 {% block navbar %} {{ parent() }} {% endblock %}
+
+
 {% block content %}
-    <div class="navbar-sec">
-        <ul id="nav-sec">
-            <li><a href="/">Planning Home</a></li>
-            <li><a href="/gadmin">Gardes Administratives</a></li>
-            <li><a href="/med">Gardes Médicales</a></li>
-            <li><a href="/tech">Gardes Techniques</a></li>
-            <li><a href="/soins">Gardes des Soins</a></li>
-            <li><a href="/ssiad">Astreintes SSIAD</a></li>
-            <li><a href="/rouvray">Garde de soins - site Le Rouvray</a></li>
-        </ul>
-    </div>
+    {{ parent() }}
 
     <div id="calendrier">
 
-
-
     </div>
 
+    <html>
+    <body>
+    <table border="1">
+        <tbody id="tbody">
+        <tr>
+            <span id="prev">PREV</span>
+            <th colspan="32" id="month">Mois</th>
+            <span id="next">NEXT</span>
+        </tr>
+        <tr id="days">
+            <th></th>
+        </tr>
+        <tr id="dates">
+            <td style="text-align: center">Utilisateurs</td>
+        </tr>
+        <tr id="users">
+
+        </tr>
+        </tbody>
+    </table>
+
+    <script type="text/javascript">
+
+    </script>
+    </body>
+    </html>
 {% endblock %}
 
 {% block javascripts %}
     <script>
-       /* let DateTime = luxon.DateTime;
-        dt = DateTime.now();
-        dt.setLocale('fr').toLocaleString(DateTime.DATETIME_FULL);
+        moment.updateLocale('fr', {
+            months: 'Janvier_Février_Mars_Avril_Mai_Juin_Juillet_Août_Septembre_Octobre_Novembre_Décembre'.split('_'),
+            monthsShort: 'janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.'.split('_'),
+            monthsParseExact: true,
+            weekdays: 'Dimanche_Lundi_Mardi_Mercredi_Jeudi_Vendredi_Samedi'.split('_'),
+            weekdaysShort: 'dim._lun._mar._mer._jeu._ven._sam.'.split('_'),
+            weekdaysMin: 'Di_Lu_Ma_Me_Je_Ve_Sa'.split('_'),
+            weekdaysParseExact: true,
+            longDateFormat: {
+                LT: 'HH:mm',
+                LTS: 'HH:mm:ss',
+                L: 'DD/MM/YYYY',
+                LL: 'D MMMM YYYY',
+                LLL: 'D MMMM YYYY HH:mm',
+                LLLL: 'dddd D MMMM YYYY HH:mm'
+            },
+            calendar: {
+                sameDay: '[Aujourd’hui à] LT',
+                nextDay: '[Demain à] LT',
+                nextWeek: 'dddd [à] LT',
+                lastDay: '[Hier à] LT',
+                lastWeek: 'dddd [dernier à] LT',
+                sameElse: 'L'
+            },
+            relativeTime: {
+                future: 'dans %s',
+                past: 'il y a %s',
+                s: 'quelques secondes',
+                m: 'une minute',
+                mm: '%d minutes',
+                h: 'une heure',
+                hh: '%d heures',
+                d: 'un jour',
+                dd: '%d jours',
+                M: 'un mois',
+                MM: '%d mois',
+                y: 'un an',
+                yy: '%d ans'
+            },
+            dayOfMonthOrdinalParse: /\d{1,2}(er|e)/,
+            ordinal: function (number) {
+                return number + (number === 1 ? 'er' : 'e');
+            },
+            meridiemParse: /PD|MD/,
+            isPM: function (input) {
+                return input.charAt(0) === 'M';
+            },
+            // In case the meridiem units are not separated around 12, then implement
+            // this function (look at locale/id.js for an example).
+            // meridiemHour : function (hour, meridiem) {
+            //     return /* 0-23 hour, given meridiem token and hour 1-12 */ ;
+            // },
+            //meridiem : function (hours, minutes, isLower) {
+            //return hours < 12 ? 'PD' : 'MD';
+        })
+        let today = moment()
+        const daysElement = document.querySelector('#days')
+        const datesElement = document.querySelector('#dates')
+        const monthsElement = document.getElementById("month")
 
-        const DateTime = luxon.DateTime;
-        dt = DateTime.now();
-        dt.setLocale('fr').toLocaleString(DateTime.DATETIME_FULL); //=> '20 avril 2017 à 11:32 UTC−4'
-
-        function getCalendarFormat(myDateTime, now) {
-            var diff = myDateTime.diff(now.startOf("day"), 'days').as('days');
-            return diff < -6 ? 'sameElse' :
-                diff < -1 ? 'lastWeek' :
-                diff < 0 ? 'lastDay' :
-                diff < 1 ? 'sameDay' :
-                diff < 2 ? 'nextDay' :
-                diff < 7 ? 'nextWeek' : 'sameElse';
+        function refreshMonth() {
+            monthsElement.innerText = `${today.format('MMMM')} ${today.format('YYYY')}`
         }
 
-        function myCalendar(dt1, dt2, obj){
-            const format = getCalendarFormat(dt1, dt2) || 'sameElse';
-            return dt1.toFormat(obj[format]);
+        function createPlanning() {
+            let daysInMonth = today.daysInMonth();
+            refreshMonth()
+
+            for (let i = 0; i < daysInMonth; i++) {
+                let date = parseInt(moment().startOf('months').format('D')) + i
+                let day = moment(`${i + 1}-${today.format('M')}-${today.format('YYYY')}`, "DD-MM-YYYY").format('dd')
+                daysElement.insertAdjacentHTML('beforeend', `<th>${day}</th>`)
+                datesElement.insertAdjacentHTML('beforeend', `<td>${date}</td>`)
+            }
         }
 
-        const now = DateTime.local();
-        const fmtObj = {
-            sameDay: "'Aujourdhui'",
-            nextDay: "'Demain'",
-            nextWeek: 'EEEE',
-            lastDay: "'Hier'",
-            lastWeek: "'Last' EEEE",
-            sameElse: 'dd/MM/yyyy'
-        };
+        function removeChild() {
+            daysElement.innerHTML = ""
+            datesElement.innerHTML = ""
+            daysElement.insertAdjacentHTML('afterbegin', '<th></th>')
+            datesElement.insertAdjacentHTML('afterbegin', '<td style="text-align: center">Utilisateurs</td>')
+        }
 
-        // Some test values
-        [ now,
-            now.plus({days: 1}),
-            now.plus({days: 4}),
-            now.minus({days: 1}),
-            now.minus({days: 4}),
-            now.minus({days: 20}),
-        ].forEach((k) => {
-            console.log( myCalendar(now, k, fmtObj) );
-        });
+        function addMonth() {
+            removeChild()
+            today.add(1, 'months')
+            createPlanning()
+            refreshMonth()
+        }
 
-       let now = moment.locale('fr');
-       let daysInMonth = moment().daysInMonth();
-       let startOfMonth = moment().startOf('month');
-       let startOfMonthDay = startOfMonth.getDay;
+        function subMonth() {
+            removeChild()
+            today.subtract(1, 'months')
+            createPlanning()
+            refreshMonth()
+        }
 
-       console.log(daysInMonth);
-       console.log(startOfMonth);
-       console.log(startOfMonthDay);
-*/
-       moment.locale('fr');
-       moment.updateLocale('fr', {
-           week: {
-               dow: 7
-           },
-           months : 'janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre'.split('_'),
-           monthsShort : 'janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.'.split('_'),
-           monthsParseExact : true,
-           weekdays : 'dimanche_lundi_mardi_mercredi_jeudi_vendredi_samedi'.split('_'),
-           weekdaysShort : 'dim._lun._mar._mer._jeu._ven._sam.'.split('_'),
-           weekdaysMin : 'Di_Lu_Ma_Me_Je_Ve_Sa'.split('_'),
-           weekdaysParseExact : true,
-           longDateFormat : {
-               LT : 'HH:mm',
-               LTS : 'HH:mm:ss',
-               L : 'DD/MM/YYYY',
-               LL : 'D MMMM YYYY',
-               LLL : 'D MMMM YYYY HH:mm',
-               LLLL : 'dddd D MMMM YYYY HH:mm'
-           },
-           calendar : {
-               sameDay : '[Aujourd’hui à] LT',
-               nextDay : '[Demain à] LT',
-               nextWeek : 'dddd [à] LT',
-               lastDay : '[Hier à] LT',
-               lastWeek : 'dddd [dernier à] LT',
-               sameElse : 'L'
-           },
-           relativeTime : {
-               future : 'dans %s',
-               past : 'il y a %s',
-               s : 'quelques secondes',
-               m : 'une minute',
-               mm : '%d minutes',
-               h : 'une heure',
-               hh : '%d heures',
-               d : 'un jour',
-               dd : '%d jours',
-               M : 'un mois',
-               MM : '%d mois',
-               y : 'un an',
-               yy : '%d ans'
-           },
-           dayOfMonthOrdinalParse : /\d{1,2}(er|e)/,
-           ordinal : function (number) {
-               return number + (number === 1 ? 'er' : 'e');
-           },
-           meridiemParse : /PD|MD/,
-           isPM : function (input) {
-               return input.charAt(0) === 'M';
-           },
-           // In case the meridiem units are not separated around 12, then implement
-           // this function (look at locale/id.js for an example).
-           // meridiemHour : function (hour, meridiem) {
-           //     return /* 0-23 hour, given meridiem token and hour 1-12 */ ;
-           // },
-           meridiem : function (hours, minutes, isLower) {
-               return hours < 12 ? 'PD' : 'MD';
-           }
-       });
-       let now = moment();
-       console.log(now);
-       console.log(moment().daysInMonth());
-       console.log(moment().weekday());
+        createPlanning()
 
+        document.querySelector('#next').addEventListener('click', addMonth)
+        document.querySelector('#prev').addEventListener('click', subMonth)
+        let daysInMonth = today.daysInMonth();
+        {% for user in users %}
+        var newTr = document.createElement('tr')
+        newTr.id = "user_{{user.id}}"
+        var newTd = document.createElement('td')
+        newTd.innerText = "{{user.prenom}} {{user.nom}}"
+        document.querySelector('#tbody').append(newTr)
+        newTr.append(newTd)
+
+        for (let j = 0; j < daysInMonth; j++) {
+            var td = document.createElement('td')
+            newTr.append(td)
+        }
+        {% endfor %}
     </script>
 {% endblock %}
