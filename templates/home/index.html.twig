@@ -42,17 +42,19 @@
                     center:'title',
                     end:'dayGridMonth,timeGridWeek,timeGridDay',
                 },
-                customButtons: {
-                    addEventButton: {
-                        text: 'Ajout event',
-                        click: function () {
-                            window.open('/calendar/new');
-                        }
+                {% if app.user %}
+                    customButtons: {
+                        addEventButton: {
+                            text: 'Ajout event',
+                            click: function () {
+                                window.open('/calendar/new');
+                            }
+                        },
                     },
-                },
                 footerToolbar: {
                     center:'addEventButton'
                 },
+            {% endif %}
                 buttonText: {
                     today:'aujourd\'hui',
                     month:'mois',
@@ -61,12 +63,14 @@
                     list:'liste'
                 },
                 events: {{ data | raw }},
-                editable: true,
-                eventDrop: (data) => {
-                    if(!confirm("Êtes-vous sûr de vouloir déplacer cet évènement?")){
-                        data.revert();
-                    }
-                },
+                {% if app.user %}
+                    editable: true,
+                    eventDrop: (data) => {
+                        if(!confirm("Êtes-vous sûr de vouloir déplacer cet évènement?")){
+                            data.revert();
+                        }
+                    },
+                {% endif %}
                 eventClick: function (event){
                     //alert(event.event._def.title, event.event._instance.range.start, event.event._instance.range.end)
                     alert('Event: ' + event.event.title + ' ' + 'Description : ' + event.event._def.description + ' ' + 'Début: ' + event.event._instance.range.start + ' ' + 'Fin: ' + event.event._instance.range.end);

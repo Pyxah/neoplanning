@@ -24,6 +24,11 @@ class Garde
      */
     private $nom;
 
+    public function __toString()
+    {
+        return $this->nom;
+    }
+
     /**
      * @ORM\Column(type="string", length=255)
      */

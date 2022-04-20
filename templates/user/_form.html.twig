@@ -1,4 +1,41 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+    {{ form_label(form.uuid, 'Utilisateur') }}
+    {{ form_widget(form.uuid) }} </br></br>
+
+{{ form_label(form.roles, 'Rôle') }}
+    {{ form_widget(form.roles) }} </br></br>
+
+{{ form_label(form.password, 'Mot de passe') }}
+    {{ form_widget(form.password) }} </br></br>
+
+{{ form_label(form.isadmin, 'Admin?') }}
+    {{ form_widget(form.isadmin) }} </br></br>
+
+{{ form_label(form.level, 'Level') }}
+    {{ form_widget(form.level) }} </br></br>
+
+{{ form_label(form.visible, 'Visible?') }}
+    {{ form_widget(form.visible) }} </br></br>
+
+{{ form_label(form.nom, 'Nom') }}
+    {{ form_widget(form.nom) }} </br></br>
+
+{{ form_label(form.prenom, 'Prenom') }}
+    {{ form_widget(form.prenom) }} </br></br>
+
+{{ form_label(form.titre, 'Titre') }}
+    {{ form_widget(form.titre) }} </br></br>
+
+{{ form_label(form.email, 'Email') }}
+    {{ form_widget(form.email) }} </br></br>
+
+{{ form_label(form.remark, 'Remarque') }}
+    {{ form_widget(form.remark) }} </br></br>
+
+{{ form_label(form.gid, 'Garde') }}
+    {{ form_widget(form.gid) }} </br></br>
+
+{{ form_label(form.sid, 'Service') }}
+    {{ form_widget(form.sid) }} </br></br>
+
+<button class="btn">{{ button_label|default('Sauvegarder') }}</button></br></br>{{ form_end(form) }}

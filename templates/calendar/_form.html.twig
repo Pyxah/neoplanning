@@ -1,4 +1,19 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Sauvegarder') }}</button>
+
+    {{ form_label(form.title, 'Titre') }}
+    {{ form_widget(form.title) }} </br></br>
+
+    {{ form_label(form.start, 'Date de début') }}
+    {{ form_widget(form.start) }} </br>
+
+    {{ form_label(form.end, 'Date de fin') }}
+    {{ form_widget(form.end) }} </br>
+
+    {{ form_label(form.description, 'Description') }}
+    {{ form_widget(form.description) }} </br></br>
+
+    {{ form_label(form.allDay, 'Toute la journée?') }}
+    {{ form_widget(form.allDay) }} </br></br>
+
+    <button class="btn">{{ button_label|default('Sauvegarder') }}</button></br></br>
 {{ form_end(form) }}

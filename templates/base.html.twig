@@ -19,6 +19,9 @@
                     <ul id="nav-up">
                         <li><a href="/">Accueil  |</a></li>
                         {% if app.user %}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <li><a href="/user">Admin  |</a></li>
+                            {% endif %}
                             <li><a href="/logout">Deconnexion</a></li>
                         {% else %}
                             <li><a href="/login">Connexion</a></li>

@@ -296,7 +296,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setGid(?Garde $gid): self
     {
-        $this->gid = 0;
+        $this->gid = $gid;
 
         return $this;
     }

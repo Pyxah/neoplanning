@@ -16,7 +16,7 @@ class HomeController extends AbstractController
     {
         $events = $calendar->findAll(); //récupération des event
 
-        $rdv = []; //on initialise un tableau vite dans lequel on va mettre les éléments parsés
+        $rdv = []; //on initialise un tableau vide dans lequel on va mettre les éléments parsés
         foreach ($events as $event){
             $rdv[] = [
               'id' => $event->getId(),

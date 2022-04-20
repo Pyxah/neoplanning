@@ -21,14 +21,26 @@
   <component name="ChangeListManager">
     <list default="true" id="adbf7cbc-61db-4201-8930-b8557de79ac4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AdministrativeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdministrativeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Garde.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Garde.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Service.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Service.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/UserType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Security/LoginFormAuthenticator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/LoginFormAuthenticator.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/administrative/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/administrative/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/calendar/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/calendar/_delete_form.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/calendar/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/calendar/_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/calendar/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/calendar/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/calendar/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/calendar/new.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/calendar/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/calendar/show.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/_delete_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/show.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,14 +207,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../csis-promeo-main/csis-promeo-main/HTML CSS pour le procédural" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/laure/Documents/CGA/Neoplanning",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
   <component name="RunManager">
     <configuration name="phpunit.xml.dist" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
@@ -238,6 +250,12 @@
       <workItem from="1646132317206" duration="894000" />
       <workItem from="1646737710673" duration="91000" />
       <workItem from="1646831373296" duration="7163000" />
+      <workItem from="1647953128134" duration="892000" />
+      <workItem from="1647985992779" duration="518000" />
+      <workItem from="1647986544169" duration="314000" />
+      <workItem from="1648024516821" duration="613000" />
+      <workItem from="1649066597088" duration="605000" />
+      <workItem from="1650369317501" duration="18896000" />
     </task>
     <servers />
   </component>

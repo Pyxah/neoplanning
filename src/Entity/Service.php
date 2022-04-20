@@ -24,6 +24,12 @@ class Service
      */
     private $nom;
 
+
+    public function __toString()
+    {
+        return $this->nom;
+    }
+
     /**
      * @ORM\OneToMany(targetEntity=User::class, mappedBy="sid")
      */
