@@ -16,9 +16,9 @@
     <table border="1">
         <tbody id="tbody">
         <tr>
-            <span id="prev">PREV</span>
-            <th colspan="32" id="month">Mois</th>
-            <span id="next">NEXT</span>
+            <span id="prev">Précédent </span>
+            <th colspan="32" id="month"></th>
+            <span id="next"> Suivant</span>
         </tr>
         <tr id="days">
             <th></th>
@@ -27,14 +27,22 @@
             <td style="text-align: center">Utilisateurs</td>
         </tr>
         <tr id="users">
-
         </tr>
         </tbody>
     </table>
 
-    <script type="text/javascript">
+    <div style="color: red; font-weight: bold">
+    </br>
 
-    </script>
+        {% for garde in garde %}
+            {% if app.user %}
+
+            {% else %}
+                {{ garde.commentaire }}
+            {% endif%}
+        {% endfor %}
+    </div>
+
     </body>
     </html>
 {% endblock %}
@@ -101,8 +109,14 @@
         const datesElement = document.querySelector('#dates')
         const monthsElement = document.getElementById("month")
 
+
         function refreshMonth() {
             monthsElement.innerText = `${today.format('MMMM')} ${today.format('YYYY')}`
+        }
+
+        function removeChildUser() {
+            document.querySelector(".user").remove()
+            console.log(document.querySelectorAll(".user"))
         }
 
         function createPlanning() {
@@ -115,6 +129,24 @@
                 daysElement.insertAdjacentHTML('beforeend', `<th>${day}</th>`)
                 datesElement.insertAdjacentHTML('beforeend', `<td>${date}</td>`)
             }
+
+            {% for user in users %}
+                var newTr = document.createElement('tr')
+                newTr.id = "user_{{user.id}}"
+                newTr.classList = "user"
+                var newTd = document.createElement('td')
+                newTd.innerText = "{{user.prenom}} {{user.nom}}"
+                document.querySelector('#tbody').append(newTr)
+                newTr.append(newTd)
+
+                for (let j = 0; j < daysInMonth; j++) {
+                    var td = document.createElement('td')
+                    var checkbox = document.createElement('input')
+                    checkbox.setAttribute("type", "checkbox")
+                    newTr.append(td)
+                    td.append(checkbox)
+                }
+            {% endfor %}
         }
 
         function removeChild() {
@@ -124,8 +156,10 @@
             datesElement.insertAdjacentHTML('afterbegin', '<td style="text-align: center">Utilisateurs</td>')
         }
 
+
         function addMonth() {
             removeChild()
+            removeChildUser()
             today.add(1, 'months')
             createPlanning()
             refreshMonth()
@@ -133,6 +167,7 @@
 
         function subMonth() {
             removeChild()
+            removeChildUser()
             today.subtract(1, 'months')
             createPlanning()
             refreshMonth()
@@ -143,18 +178,6 @@
         document.querySelector('#next').addEventListener('click', addMonth)
         document.querySelector('#prev').addEventListener('click', subMonth)
         let daysInMonth = today.daysInMonth();
-        {% for user in users %}
-        var newTr = document.createElement('tr')
-        newTr.id = "user_{{user.id}}"
-        var newTd = document.createElement('td')
-        newTd.innerText = "{{user.prenom}} {{user.nom}}"
-        document.querySelector('#tbody').append(newTr)
-        newTr.append(newTd)
 
-        for (let j = 0; j < daysInMonth; j++) {
-            var td = document.createElement('td')
-            newTr.append(td)
-        }
-        {% endfor %}
     </script>
 {% endblock %}

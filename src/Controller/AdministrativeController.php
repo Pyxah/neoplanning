@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Garde;
 use App\Entity\User;
+use http\Client\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,9 +21,22 @@ class AdministrativeController extends AbstractController
             ['gid' => 1]
         );
 
+        $garde = $this->getDoctrine()->getRepository(Garde::class)->findBy(
+            ['id' => 1]
+        );
+
         return $this->render('administrative/index.html.twig', [
             'controller_name' => 'AdministrativeController',
-            'users' => $users
+            'users' => $users,
+            'garde' => $garde
         ]);
+    }
+/*
+    /**
+     * @Route "/gedit", name "gardeEdit")
+     * @
+     */
+    public function editGardeCommentaire(Garde $garde, Request $request){
+
     }
 }
