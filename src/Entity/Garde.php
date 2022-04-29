@@ -49,9 +49,15 @@ class Garde
      */
     private $users;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Reservations::class, mappedBy="garde")
+     */
+    private $reservations;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -131,6 +137,36 @@ class Garde
             // set the owning side to null (unless already changed)
             if ($user->getGid() === $this) {
                 $user->setGid(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Reservations[]
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservations $reservation): self
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations[] = $reservation;
+            $reservation->setGarde($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservations $reservation): self
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getGarde() === $this) {
+                $reservation->setGarde(null);
             }
         }
 

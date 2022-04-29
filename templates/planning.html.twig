@@ -1,0 +1,297 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    {{ parent() }}
+
+    <div id="calendrier">
+    </div>
+
+    <html>
+    <body>
+    <table border="1">
+        <tbody id="tbody">
+        <tr>
+            <span id="prev">Précédent </span>
+            <th colspan="32" id="month"></th>
+            <span id="next"> Suivant</span>
+        </tr>
+        <tr id="days">
+            <th></th>
+        </tr>
+        <tr id="dates">
+            <td style="text-align: center">Utilisateurs</td>
+        </tr>
+        <tr id="users">
+        </tr>
+        </tbody>
+    </table>
+
+    </br>
+
+    {% for garde in garde %}
+        {% if app.user %}
+            <form method="post" action="/geditcom">
+                <div class="form">
+                    <!--<input type="text" id="inputCommentaire" class="form-control">-->
+                    <textarea type="text" name="commentaire" id="commentaire">{{garde.commentaire}}</textarea>
+                </div>
+                <div class="form">
+                    <button id="submitDates" type="submit">Enregistrer</button>
+                </div>
+            </form>
+        {% else %}
+            <div style="color: red; font-weight: bold">
+                {{ garde.commentaire }}
+            </div>
+        {% endif%}
+    {% endfor %}
+    </body>
+    </html>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+        moment.updateLocale('fr', {
+            months: 'Janvier_Février_Mars_Avril_Mai_Juin_Juillet_Août_Septembre_Octobre_Novembre_Décembre'.split('_'),
+            monthsShort: 'janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.'.split('_'),
+            monthsParseExact: true,
+            weekdays: 'Dimanche_Lundi_Mardi_Mercredi_Jeudi_Vendredi_Samedi'.split('_'),
+            weekdaysShort: 'dim._lun._mar._mer._jeu._ven._sam.'.split('_'),
+            weekdaysMin: 'Di_Lu_Ma_Me_Je_Ve_Sa'.split('_'),
+            weekdaysParseExact: true,
+            longDateFormat: {
+                LT: 'HH:mm',
+                LTS: 'HH:mm:ss',
+                L: 'DD/MM/YYYY',
+                LL: 'D MMMM YYYY',
+                LLL: 'D MMMM YYYY HH:mm',
+                LLLL: 'dddd D MMMM YYYY HH:mm'
+            },
+            calendar: {
+                sameDay: '[Aujourd’hui à] LT',
+                nextDay: '[Demain à] LT',
+                nextWeek: 'dddd [à] LT',
+                lastDay: '[Hier à] LT',
+                lastWeek: 'dddd [dernier à] LT',
+                sameElse: 'L'
+            },
+            relativeTime: {
+                future: 'dans %s',
+                past: 'il y a %s',
+                s: 'quelques secondes',
+                m: 'une minute',
+                mm: '%d minutes',
+                h: 'une heure',
+                hh: '%d heures',
+                d: 'un jour',
+                dd: '%d jours',
+                M: 'un mois',
+                MM: '%d mois',
+                y: 'un an',
+                yy: '%d ans'
+            },
+            dayOfMonthOrdinalParse: /\d{1,2}(er|e)/,
+            ordinal: function (number) {
+                return number + (number === 1 ? 'er' : 'e');
+            },
+            meridiemParse: /PD|MD/,
+            isPM: function (input) {
+                return input.charAt(0) === 'M';
+            },
+            // In case the meridiem units are not separated around 12, then implement
+            // this function (look at locale/id.js for an example).
+            // meridiemHour : function (hour, meridiem) {
+            //     return /* 0-23 hour, given meridiem token and hour 1-12 */ ;
+            // },
+            //meridiem : function (hours, minutes, isLower) {
+            //return hours < 12 ? 'PD' : 'MD';
+        })
+        let today = moment()
+        const daysElement = document.querySelector('#days')
+        const datesElement = document.querySelector('#dates')
+        const monthsElement = document.getElementById("month")
+
+
+        function refreshMonth() {
+            monthsElement.innerText = `${today.format('MMMM')} ${today.format('YYYY')}`
+        }
+
+        function removeChildUser() {
+            {% for user in users %}
+            document.querySelector(".user").remove()
+            // console.log(document.querySelectorAll(".user"))
+            {% endfor %}
+        }
+
+        function createPlanning() {
+            let daysInMonth = today.daysInMonth();
+            const location = (window.location.href).replace('http://localhost:8000/', '');
+            refreshMonth()
+
+            for (let i = 0; i < daysInMonth; i++) {
+                let date = parseInt(moment().startOf('months').format('D')) + i
+                let day = moment(`${i + 1}-${today.format('M')}-${today.format('YYYY')}`, "DD-MM-YYYY").format('dd')
+                daysElement.insertAdjacentHTML('beforeend', `<th>${day}</th>`)
+                datesElement.insertAdjacentHTML('beforeend', `<td>${date}</td>`)
+            }
+
+            {% for user in users %}
+            var newTr = document.createElement('tr')
+            newTr.id = "user_{{user.id}}"
+            newTr.classList = "user"
+            var newTd = document.createElement('td')
+            newTd.innerText = "{{user.prenom}} {{user.nom}}"
+            document.querySelector('#tbody').append(newTr)
+            newTr.append(newTd)
+            for (let j = 0; j < daysInMonth; j++) {
+                var td = document.createElement('td')
+                td.id = (j+1)
+                var checkbox = document.createElement('input')
+
+                {% if reservations is not empty %}
+                {% for reservation in reservations %} // display checked case if a reservation has already been save
+                if({{reservation.userId}} == {{user.id}} && parseInt({{gardeId}}) == {{reservation.garde.id}} && {{reservation.date|date("m")}} == today.format('M')){
+                    if({{reservation.date|date("d")}} == td.id){
+                        {% if app.user %}
+                        checkbox.setAttribute("type", "checkbox")
+                        checkbox.setAttribute("checked", "true")
+                        {% else %}
+                        checkbox.setAttribute("type", "hidden");
+                        checkbox = document.createElement('div');
+                        td.setAttribute("style", "background-color:green;width:19.8px;")
+                        // pour changer et revenir avec juste les checkbox grisées
+                        //  checkbox.setAttribute("type", "checkbox")
+                        //  checkbox.setAttribute("checked", "true")
+                        //  checkbox.setAttribute("disabled","true")
+                        {% endif %}
+                        checkbox.id = td.id
+                        newTr.append(td)
+                        td.append(checkbox)
+                    }
+                else{
+                        {% if app.user %}
+                        checkbox.setAttribute("type", "checkbox")
+                        {% else %}
+                        checkbox.setAttribute("type", "checkbox")
+                        checkbox.setAttribute("disabled","true")
+                        {% endif %}
+                        checkbox.id = td.id
+                        newTr.append(td)
+                        td.append(checkbox)
+                    }
+                }
+            else{
+                    {% if app.user %}
+                    checkbox.setAttribute("type", "checkbox")
+                    {% else %}
+                    checkbox.setAttribute("type", "checkbox")
+                    checkbox.setAttribute("disabled","true")
+                    {% endif %}
+                    checkbox.id = td.id
+                    newTr.append(td)
+                    td.append(checkbox)
+                }
+                {% endfor %}
+                {% else %}
+                {% if app.user %}
+                checkbox.setAttribute("type", "checkbox")
+                {% else %}
+                checkbox.setAttribute("type", "checkbox")
+                checkbox.setAttribute("disabled","true")
+                {% endif %}
+                checkbox.id = td.id
+                newTr.append(td)
+                td.append(checkbox)
+                {% endif %}
+            }
+            {% endfor %}
+        }
+
+        function removeChild() {
+            daysElement.innerHTML = ""
+            datesElement.innerHTML = ""
+            daysElement.insertAdjacentHTML('afterbegin', '<th></th>')
+            datesElement.insertAdjacentHTML('afterbegin', '<td style="text-align: center">Utilisateurs</td>')
+        }
+
+        function addMonth() {
+            removeChild()
+            removeChildUser()
+            today.add(1, 'months')
+            createPlanning()
+            refreshMonth()
+        }
+
+        function subMonth() {
+            removeChild()
+            removeChildUser()
+            today.subtract(1, 'months')
+            createPlanning()
+            refreshMonth()
+        }
+
+        createPlanning()
+
+        {# part of the tested solution: getting the current month/year + need to update database since the data are remove if changing month #}
+        let currentMonth = today.format('MM');
+        let currentYear = today.format('YYYY');
+        document.querySelector('#next').addEventListener('click',function(){
+            addMonth();
+            currentMonth = today.format('MM');
+            currentYear = today.format('YYYY');
+        })
+        document.querySelector('#prev').addEventListener('click', function(){
+            subMonth();
+            currentMonth = today.format('MM');
+            currentYear = today.format('YYYY');
+        })
+        let daysInMonth = today.daysInMonth();
+
+        {# Testing a solution for update database with user date of guard #}
+
+        $(document).on('click','#submitDates',function(e){
+            e.preventDefault();
+            updateDataBase();
+        });
+
+        function updateDataBase(){
+            const usersValidation = document.querySelectorAll(".user");
+            const location = (window.location.href).replace('http://127.0.0.1:8000/', '');
+            datesByUserChecked = [];
+            usersValidation.forEach(user=>{
+                userIDCrop = (user.id).replace('user_', '');
+                container = document.getElementById(user.id);
+                inputs = container.querySelectorAll('input');
+                datesChecked = [];
+                inputs.forEach(input=>{
+                    let fullDate = moment(currentYear +"-"+ currentMonth +"-"+ input.id).format("DD/MM/YYYY");
+                    if(input.checked){
+                        datesChecked.push(fullDate);
+                    }
+                })
+                console.log(datesByUserChecked);
+                datesByUserChecked.push({user:userIDCrop,dates:datesChecked});
+            })
+
+            $.ajax({
+                url:'http://127.0.0.1:8000/sendData/'+location,
+                type:'POST',
+                datatype:'json',
+                data:{
+                    "reservations": datesByUserChecked,
+                    "location":location,
+                    "currentmonth":currentMonth,
+                    "currentYear":currentYear
+                },
+                async:true,
+                success:function(){
+                    console.log('update success');
+                },
+                error: function(data){
+                    console.log("fail");
+                }
+            });
+        }
+    </script>
+{% endblock %}
